@@ -597,8 +597,8 @@ function displayTrack(track) {
             ? `
 
                 <div class="isrc-value">
-                    ${escapeHtml(track.isrc)}
-                </div>
+    isrc:${escapeHtml(track.isrc)}
+</div>
 
 
                 <button
@@ -746,10 +746,10 @@ async function copyISRC(
     try {
 
         await navigator
-            .clipboard
-            .writeText(
-                isrc
-            );
+    .clipboard
+    .writeText(
+        `isrc:${isrc}`
+    );
 
 
         const text =

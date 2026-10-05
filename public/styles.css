@@ -1713,19 +1713,6 @@ kbd {
 }
 
 
-.isrc-value::before {
-
-    content: "ISRC";
-
-    margin-right: 7px;
-
-    color:
-        var(--muted);
-
-    font-size: 8px;
-
-    font-weight: 700;
-}
 
 
 .isrc-unavailable {
