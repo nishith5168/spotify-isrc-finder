@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#101114"
+    >
+
+    <meta
+        name="description"
+        content="Find Spotify ISRC codes quickly. Search by song, artist, or Spotify link."
+    >
+
+    <meta
+        property="og:title"
+        content="Spotify ISRC Finder"
+    >
+
+    <meta
+        property="og:description"
+        content="Find Spotify track metadata and ISRC codes quickly."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+
+    <!-- PWA -->
+
+    <link
+        rel="manifest"
+        href="/manifest.json"
+    >
+
+    <meta
+        name="mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes"
+    >
+
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+    >
+
+    <meta
+        name="apple-mobile-web-app-title"
+        content="ISRC Finder"
+    >
+
+
+    <title>
+        Spotify ISRC Finder
+    </title>
+
+
+    <link
+        rel="icon"
+        href="/icon-192.svg"
+        type="image/svg+xml"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- BACKGROUND BLOBS -->
+
+    <div
+        class="background-blobs"
+        aria-hidden="true"
+    >
+        <div class="blob blob-blue"></div>
+        <div class="blob blob-purple"></div>
+        <div class="blob blob-pink"></div>
+        <div class="blob blob-cyan"></div>
+        <div class="blob blob-orange"></div>
+    </div>
+
+
+    <!-- THEME BUTTON -->
+
+    <button
+        class="theme-toggle"
+        id="themeToggle"
+        onclick="toggleTheme()"
+        type="button"
+        aria-label="Toggle theme"
+    >
+        🌙
+    </button>
+
+
+    <main class="container">
+
+        <!-- HEADER -->
+
+        <section class="header">
+
+            <div class="logo">
+                Spotify ISRC Finder
+            </div>
+
+            <h1>
+                Find Any Song's ISRC
+            </h1>
+
+            <p class="subtitle">
+                Search for a song or paste a Spotify link.
+            </p>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <section
+            class="search-box"
+            id="searchBox"
+        >
+
+            <span
+                class="search-icon"
+                aria-hidden="true"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                >
+                    <circle
+                        cx="10.8"
+                        cy="10.8"
+                        r="6.8"
+                    ></circle>
+
+                    <path
+                        d="M16 16L21 21"
+                    ></path>
+                </svg>
+
+            </span>
+
+
+            <input
+                type="text"
+                id="spotifyUrl"
+                placeholder="Search song, artist or paste Spotify link..."
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                enterkeyhint="search"
+            >
+
+
+            <button
+                class="clear-search"
+                id="clearSearch"
+                onclick="clearSearch()"
+                type="button"
+                aria-label="Clear search"
+            >
+                ×
+            </button>
+
+
+            <button
+                class="search-button"
+                onclick="searchSong()"
+                type="button"
+            >
+                Search
+            </button>
+
+        </section>
+
+
+        <div class="shortcut-hint">
+            Press <kbd>/</kbd> to search
+        </div>
+
+
+        <div class="drop-hint">
+            or drag &amp; drop a Spotify link here
+        </div>
+
+
+        <!-- INSTALL APP -->
+
+        <div class="install-app-area">
+
+            <button
+                id="installAppButton"
+                class="install-app-button hidden"
+                onclick="installApp()"
+                type="button"
+            >
+
+                <span class="install-icon">
+                    ↓
+                </span>
+
+                <span>
+                    Install App
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- RECENT SEARCHES -->
+
+        <div
+            id="recentSearches"
+            class="recent-searches"
+        ></div>
+
+
+        <!-- RESULTS -->
+
+        <section
+            id="results-section"
+            class="results-section"
+        >
+
+            <div
+                id="results-header"
+                class="results-header hidden"
+            >
+
+                <div>
+
+                    <h2>
+                        Search Results
+                    </h2>
+
+                    <span
+                        id="results-count"
+                    ></span>
+
+                </div>
+
+
+                <button
+                    id="shareButton"
+                    class="share-button"
+                    onclick="shareResults()"
+                    type="button"
+                >
+                    Share
+                </button>
+
+            </div>
+
+
+            <div id="result"></div>
+
+
+            <div
+                id="loadMoreContainer"
+                class="load-more-container hidden"
+            >
+
+                <button
+                    id="loadMoreButton"
+                    class="load-more-button"
+                    onclick="loadMore()"
+                    type="button"
+                >
+
+                    <span id="loadMoreText">
+                        See More
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section class="about-card">
+
+            <div class="about-icon">
+                ♪
+            </div>
+
+
+            <div class="about-content">
+
+                <h3>
+                    About Spotify ISRC Finder
+                </h3>
+
+
+                <p>
+                    A simple tool for finding Spotify track metadata
+                    and International Standard Recording Codes.
+                </p>
+
+
+                <span>
+                    Built by @nishx.th · HTML, CSS, JavaScript,
+                    Node.js &amp; Spotify Web API
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+
+            <div class="footer-shine"></div>
+
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+                    Spotify ISRC Finder
+                </div>
+
+
+                <div class="footer-text">
+                    Find track metadata and ISRC codes quickly.
+                </div>
+
+
+                <div class="footer-credit">
+                    Built by @nishx.th · Built with curiosity.
+                </div>
+
+            </div>
+
+        </footer>
+
+    </main>
+
+
+    <!-- INSTALL INSTRUCTION MODAL -->
+
+    <div
+        id="installModal"
+        class="install-modal hidden"
+        onclick="closeInstallModal(event)"
+    >
+
+        <div class="install-modal-card">
+
+            <button
+                class="install-modal-close"
+                onclick="closeInstallModal()"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <div class="install-modal-icon">
+                ↓
+            </div>
+
+
+            <h3>
+                Install ISRC Finder
+            </h3>
+
+
+            <p id="installInstructions">
+                Install Spotify ISRC Finder on your device.
+            </p>
+
+
+            <button
+                class="install-modal-done"
+                onclick="closeInstallModal()"
+                type="button"
+            >
+                Got it
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

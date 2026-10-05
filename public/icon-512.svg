@@ -1,0 +1,96 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="512"
+    height="512"
+    viewBox="0 0 192 192"
+>
+
+    <defs>
+
+        <linearGradient
+            id="bg"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="1"
+        >
+            <stop
+                offset="0%"
+                stop-color="#17181c"
+            />
+
+            <stop
+                offset="100%"
+                stop-color="#0d0e12"
+            />
+        </linearGradient>
+
+
+        <linearGradient
+            id="glass"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="1"
+        >
+            <stop
+                offset="0%"
+                stop-color="#ffffff"
+                stop-opacity="0.30"
+            />
+
+            <stop
+                offset="100%"
+                stop-color="#ffffff"
+                stop-opacity="0.08"
+            />
+        </linearGradient>
+
+    </defs>
+
+
+    <rect
+        width="192"
+        height="192"
+        rx="44"
+        fill="url(#bg)"
+    />
+
+
+    <circle
+        cx="96"
+        cy="96"
+        r="50"
+        fill="url(#glass)"
+        stroke="#ffffff"
+        stroke-opacity="0.30"
+        stroke-width="1.5"
+    />
+
+
+    <g
+        fill="none"
+        stroke="#ffffff"
+        stroke-linecap="round"
+    >
+
+        <path
+            d="M70 86 C84 80 103 80 122 87"
+            stroke-width="5"
+        />
+
+        <path
+            d="M74 98 C88 93 104 94 118 99"
+            stroke-width="4"
+            opacity="0.75"
+        />
+
+        <path
+            d="M80 109 C91 106 103 107 113 111"
+            stroke-width="3"
+            opacity="0.50"
+        />
+
+    </g>
+
+</svg>
